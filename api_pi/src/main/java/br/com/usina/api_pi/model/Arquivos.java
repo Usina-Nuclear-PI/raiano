@@ -20,4 +20,8 @@ public class Arquivos {
     public Arquivos(Long id) {
         setId(id);
     }
+
+    public Long getId() {
+        return id;
+    }
 }
