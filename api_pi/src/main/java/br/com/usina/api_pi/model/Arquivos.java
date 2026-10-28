@@ -1,26 +1,28 @@
 package br.com.usina.api_pi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "arquivo_importacao") // sua classe se chama Arquivos, mas a tabela SQL se chama arquivo_importacao. Essa anotação garante o mapeamento correto
 public class Arquivos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long id_usuarios;
+    @Column(nullable = false)
+    private Long id_usuario;
+    @Column(nullable = false)
     private String nome;
     private String descricao;
+    @Lob // indica que o atributo armazena um objeto binário grande, compatível com o uso de BLOB
+    @Column(nullable = false) // representa as restrições NOT NULL do banco para os campos id_usuario, nome e arquivo
     private byte[] arquivo;
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setId_usuarios(Long id_usuarios) {
-        this.id_usuarios = id_usuarios;
+    public void setId_usuario(Long id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public void setNome(String nome) {
@@ -37,9 +39,9 @@ public class Arquivos {
 
     public Arquivos() {}
 
-    public Arquivos(Long id, Long id_usuarios, String nome, String descricao, byte[] arquivo) {
+    public Arquivos(Long id, Long id_usuario, String nome, String descricao, byte[] arquivo) {
         setId(id);
-        setId_usuarios(id_usuarios);
+        setId_usuario(id_usuario);
         setNome(nome);
         setDescricao(descricao);
         setArquivo(arquivo);
@@ -49,8 +51,8 @@ public class Arquivos {
         return id;
     }
 
-    public Long getId_usuarios() {
-        return id_usuarios;
+    public Long getId_usuario() {
+        return id_usuario;
     }
 
     public String getNome() {
