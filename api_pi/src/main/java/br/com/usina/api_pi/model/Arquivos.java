@@ -5,14 +5,20 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "arquivo_importacao") // sua classe se chama Arquivos, mas a tabela SQL se chama arquivo_importacao. Essa anotação garante o mapeamento correto
 public class Arquivos {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+
+    @Column(name = "id_usuario", nullable = false)
     private Long id_usuario;
-    @Column(nullable = false)
+
+    @Column(nullable = false, length = 255)
     private String nome;
+
+    @Column(length = 255)
     private String descricao;
+
     @Lob // indica que o atributo armazena um objeto binário grande, compatível com o uso de BLOB
     @Column(nullable = false) // representa as restrições NOT NULL do banco para os campos id_usuario, nome e arquivo
     private byte[] arquivo;

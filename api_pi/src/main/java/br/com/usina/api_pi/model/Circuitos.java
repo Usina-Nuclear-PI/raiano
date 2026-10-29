@@ -5,10 +5,12 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "circuitos")
 public class Circuitos {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+
+    @Column(nullable = false, length = 255)
     private String nome;
 
     public void setId(Long id) {

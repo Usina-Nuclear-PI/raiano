@@ -1,4 +1,8 @@
 package br.com.usina.api_pi.repository;
 
-public interface ArquivosRepository {
+import br.com.usina.api_pi.model.Arquivos;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ArquivosRepository
+        extends JpaRepository<Arquivos, Long> {
 }
